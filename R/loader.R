@@ -1,22 +1,22 @@
-library(TreeSummarizedExperiment)
-library(ape)
-
 #' load data
 #'
-#' @param fname The filename or URL of the `wide.csv` file.
-#'   The file can (and probably should) be gzipped.
+#' @param bfc BiocFileCache object to use
+#' @param ... passe
 #'
 #'
 #' @importFrom data.table fread
 #' @importClassesFrom Matrix TsparseMatrix
 #' @import TreeSummarizedExperiment
 #' @import ape
+#' @importFrom BiocFileCache BiocFileCache bfcrpath
 #'
 #' @export
 #'
-loadme <- function(fname) {
-  dat = data.table::fread(fname)
-  sampnames = dat[,2]
+get_compendium <- function(bfc = BiocFileCache::BiocFileCache(), ...) {
+  url = "https://zenodo.org/record/8186994/files/taxonomic_table.csv.gz"
+  path = bfcrpath(bfc, url)
+  dat = data.table::fread(path, ...)
+  sampnames = dat[[2]]
   taxa = colnames(dat)[3:ncol(dat)]
   requireNamespace('Matrix')
   #mat = as(as.matrix(dat[,3:ncol(dat)]), 'TsparseMatrix')
@@ -42,7 +42,7 @@ loadme <- function(fname) {
     "strain")
   rowdata = data.frame(splittaxa)
   rownames(rowdata) = taxa
-  td = TreeSummarizedExperiment(
+  td = TreeSummarizedExperiment::TreeSummarizedExperiment(
     colData=coldata,
     rowData=rowdata,
     assays=list(counts=t(mat))
