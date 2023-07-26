@@ -4,23 +4,25 @@
 \alias{get_compendium}
 \title{load all compendium data into a TreeSummarizedExperiment}
 \usage{
-get_compendium(bfc = BiocFileCache::BiocFileCache(), ...)
+get_compendium(bfc = BiocFileCache::BiocFileCache())
 }
 \arguments{
 \item{bfc}{BiocFileCache object to use}
-
-\item{...}{passed to data.table::fread}
 }
 \description{
 load all compendium data into a TreeSummarizedExperiment
 }
 \examples{
 
+# The data are large, so avoid running in example
+
+\dontrun{
 cpd <- get_compendium()
 
 dim(cpd)
 cpd
 assayNames(cpd)
 head(colData(cpd))
+}
 
 }

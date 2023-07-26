@@ -15,7 +15,6 @@
 #' load all compendium data into a TreeSummarizedExperiment
 #'
 #' @param bfc BiocFileCache object to use
-#' @param ... passed to data.table::fread
 #'
 #'
 #' @importFrom data.table fread
@@ -28,14 +27,18 @@
 #'
 #' @examples
 #'
+#' # The data are large, so avoid running in example
+#'
+#' \dontrun{
 #' cpd <- get_compendium()
 #'
 #' dim(cpd)
 #' cpd
 #' assayNames(cpd)
 #' head(colData(cpd))
+#' }
 #'
-get_compendium <- function(bfc = BiocFileCache::BiocFileCache(), ...) {
+get_compendium <- function(bfc = BiocFileCache::BiocFileCache()) {
   dat = .get_compendium_data(bfc)
 
   coldat = .get_compendium_coldata(bfc)
