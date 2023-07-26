@@ -1,10 +1,11 @@
 Package: MicroBioMap
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Access the microbiome compendium from R.
 Version: 0.1.0
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Description: Our dataset includes over 170,000 samples of publicly available 
+    16S rRNA amplicon sequencing data, all processed using the same pipeline 
+    and reference database.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Authors@R: 
