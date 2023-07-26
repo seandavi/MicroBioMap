@@ -8,4 +8,4 @@ License: What license is it under?
 Encoding: UTF-8
 LazyData: true
 Authors@R: 
-    person("Sean", "Davis", role = c("ctb", "cre"), email='seandavi@gmail.com')
+    c(person("Sean", "Davis", role = c("ctb", "cre"), email='seandavi@gmail.com'))
