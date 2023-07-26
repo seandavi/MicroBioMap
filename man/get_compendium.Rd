@@ -2,7 +2,7 @@
 % Please edit documentation in R/loader.R
 \name{get_compendium}
 \alias{get_compendium}
-\title{load data}
+\title{load all compendium data into a TreeSummarizedExperiment}
 \usage{
 get_compendium(bfc = BiocFileCache::BiocFileCache(), ...)
 }
@@ -12,7 +12,7 @@ get_compendium(bfc = BiocFileCache::BiocFileCache(), ...)
 \item{...}{passed to data.table::fread}
 }
 \description{
-load data
+load all compendium data into a TreeSummarizedExperiment
 }
 \examples{
 
@@ -21,5 +21,6 @@ cpd <- get_compendium()
 dim(cpd)
 cpd
 assayNames(cpd)
+head(colData(cpd))
 
 }

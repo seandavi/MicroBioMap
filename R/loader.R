@@ -1,4 +1,18 @@
-#' load data
+.get_compendium_data <- function(bfc) {
+  url = "https://zenodo.org/record/8186994/files/taxonomic_table.csv.gz"
+  rpath = bfcrpath(bfc, url)
+  data.table::fread(rpath)
+}
+
+.get_compendium_coldata <- function(bfc) {
+  url = 'https://zenodo.org/record/8186994/files/sample_metadata.tsv'
+  rpath = bfcrpath(bfc,url)
+  sampdat = as.data.frame(data.table::fread(rpath))
+  rownames(sampdat) = paste(sampdat[[2]], sampdat[[3]], sep="_")
+  sampdat
+}
+
+#' load all compendium data into a TreeSummarizedExperiment
 #'
 #' @param bfc BiocFileCache object to use
 #' @param ... passed to data.table::fread
@@ -19,12 +33,17 @@
 #' dim(cpd)
 #' cpd
 #' assayNames(cpd)
+#' head(colData(cpd))
 #'
 get_compendium <- function(bfc = BiocFileCache::BiocFileCache(), ...) {
-  url = "https://zenodo.org/record/8186994/files/taxonomic_table.csv.gz"
-  path = bfcrpath(bfc, url)
-  dat = data.table::fread(path, ...)
+  dat = .get_compendium_data(bfc)
+
+  coldat = .get_compendium_coldata(bfc)
+
   sampnames = dat[[2]]
+
+  coldat = coldat[match(sampnames, rownames(coldat)), ]
+
   taxa = colnames(dat)[3:ncol(dat)]
   requireNamespace('Matrix')
   #mat = as(as.matrix(dat[,3:ncol(dat)]), 'TsparseMatrix')
@@ -51,7 +70,7 @@ get_compendium <- function(bfc = BiocFileCache::BiocFileCache(), ...) {
   rowdata = data.frame(splittaxa)
   rownames(rowdata) = taxa
   td = TreeSummarizedExperiment::TreeSummarizedExperiment(
-    colData=coldata,
+    colData=coldat,
     rowData=rowdata,
     assays=list(counts=t(mat))
   )
