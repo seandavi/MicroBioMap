@@ -1,11 +1,17 @@
 Package: MicroBioMap
 Type: Package
-Title: Access the microbiome compendium from R.
+Title: Access the microbiome compendium from R
 Version: 0.1.0
 Description: Our dataset includes over 170,000 samples of publicly available 
     16S rRNA amplicon sequencing data, all processed using the same pipeline 
     and reference database.
 License: MIT + file LICENSE
+Depends:
+    TreeSummarizedExperiment,
+    ape
+Imports:
+    Matrix,
+    data.table
 Encoding: UTF-8
 LazyData: true
 Authors@R: 
@@ -14,3 +20,4 @@ Authors@R:
       email='seandavi@gmail.com',
       comment=c(ORCID='0000-0002-8991-6458')))
 URL: https://seandavi.github.io/MicroBioMap/
+RoxygenNote: 7.2.3

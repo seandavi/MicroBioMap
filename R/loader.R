@@ -1,6 +1,16 @@
 library(TreeSummarizedExperiment)
 library(ape)
 
+#' load data
+#'
+#' @param fname The filename or URL of the `wide.csv` file.
+#'   The file can (and probably should) be gzipped.
+#'
+#'
+#' @importFrom data.table fread
+#' @importClassesFrom Matrix TsparseMatrix
+#' @import TreeSummarizedExperiment
+#' @import ape
 #'
 #' @export
 #'
