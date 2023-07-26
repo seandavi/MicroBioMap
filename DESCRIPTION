@@ -1,7 +1,7 @@
 Package: MicroBioMap
 Type: Package
 Title: Access the microbiome compendium from R
-Version: 0.1.0
+Version: 0.2.0
 Description: Our dataset includes over 170,000 samples of publicly available 
     16S rRNA amplicon sequencing data, all processed using the same pipeline 
     and reference database.
@@ -11,7 +11,8 @@ Depends:
     ape
 Imports:
     Matrix,
-    data.table
+    data.table,
+    BiocFileCache
 Encoding: UTF-8
 LazyData: true
 Authors@R: 
