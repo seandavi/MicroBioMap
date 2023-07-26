@@ -9,8 +9,17 @@ get_compendium(bfc = BiocFileCache::BiocFileCache(), ...)
 \arguments{
 \item{bfc}{BiocFileCache object to use}
 
-\item{...}{passe}
+\item{...}{passed to data.table::fread}
 }
 \description{
 load data
+}
+\examples{
+
+cpd <- get_compendium()
+
+dim(cpd)
+cpd
+assayNames(cpd)
+
 }

@@ -1,7 +1,7 @@
 #' load data
 #'
 #' @param bfc BiocFileCache object to use
-#' @param ... passe
+#' @param ... passed to data.table::fread
 #'
 #'
 #' @importFrom data.table fread
@@ -11,6 +11,14 @@
 #' @importFrom BiocFileCache BiocFileCache bfcrpath
 #'
 #' @export
+#'
+#' @examples
+#'
+#' cpd <- get_compendium()
+#'
+#' dim(cpd)
+#' cpd
+#' assayNames(cpd)
 #'
 get_compendium <- function(bfc = BiocFileCache::BiocFileCache(), ...) {
   url = "https://zenodo.org/record/8186994/files/taxonomic_table.csv.gz"
