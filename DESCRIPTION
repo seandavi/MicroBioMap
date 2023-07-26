@@ -9,4 +9,8 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Authors@R: 
-    c(person("Sean", "Davis", role = c("ctb", "cre"), email='seandavi@gmail.com'))
+    c(person("Sean", "Davis", 
+      role = c("ctb", "cre"), 
+      email='seandavi@gmail.com',
+      comment=c(ORCID='0000-0002-8991-6458')))
+URL: https://seandavi.github.io/MicroBioMap/
