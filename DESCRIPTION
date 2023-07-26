@@ -13,8 +13,6 @@ Imports:
     Matrix,
     data.table,
     BiocFileCache
-Suggests:
-    testthat
 Encoding: UTF-8
 LazyData: true
 Authors@R: 
