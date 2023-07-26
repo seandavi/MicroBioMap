@@ -1,4 +1,13 @@
-url: ~
+url: https://seandavi.github.io/MicroBioMap/
 template:
   bootstrap: 5
+  bootswatch: cyborg
+  theme: arrow-dark
 
+navbar:
+  structure:
+    right: [github]
+  components:
+    github:
+      icon: fa-github
+      href: http://github.com/seandavi/MicroBioMap
