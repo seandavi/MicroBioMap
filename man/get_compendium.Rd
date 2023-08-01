@@ -9,20 +9,18 @@ get_compendium(bfc = BiocFileCache::BiocFileCache())
 \arguments{
 \item{bfc}{BiocFileCache object to use}
 }
+\value{
+a `TreeSummarizedExperiment`
+}
 \description{
 load all compendium data into a TreeSummarizedExperiment
 }
 \examples{
-
-# The data are large, so avoid running in example
-
-\dontrun{
 cpd <- get_compendium()
 
 dim(cpd)
 cpd
 assayNames(cpd)
 head(colData(cpd))
-}
 
 }

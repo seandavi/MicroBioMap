@@ -16,27 +16,24 @@
 #'
 #' @param bfc BiocFileCache object to use
 #'
+#' @returns a `TreeSummarizedExperiment`
 #'
 #' @importFrom data.table fread
 #' @importClassesFrom Matrix TsparseMatrix
 #' @import TreeSummarizedExperiment
+#' @import R.utils
 #' @import ape
 #' @importFrom BiocFileCache BiocFileCache bfcrpath
 #'
 #' @export
 #'
 #' @examples
-#'
-#' # The data are large, so avoid running in example
-#'
-#' \dontrun{
 #' cpd <- get_compendium()
 #'
 #' dim(cpd)
 #' cpd
 #' assayNames(cpd)
 #' head(colData(cpd))
-#' }
 #'
 get_compendium <- function(bfc = BiocFileCache::BiocFileCache()) {
   dat = .get_compendium_data(bfc)
