@@ -1,0 +1,86 @@
+---
+title: "Using the MicroBioMap package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using the MicroBioMap package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Overview
+
+## Getting started
+
+### Installation
+
+```{r eval=FALSE}
+library(BiocManager)
+BiocManager::install('seandavi/MicroBioMap')
+```
+
+## Basic usage
+
+```{r message=FALSE}
+library(MicroBioMap)
+# this operation requires about 4GB of RAM
+cpd <- get_compendium()
+```
+
+```{r}
+cpd
+```
+
+### Sample metadata
+
+
+The `colData` slot of the `cpd` object contains the information about samples.
+We can examine the names of the available metadata:
+
+```{r}
+names(colData(cpd))
+```
+
+We can look at the samples by available regions:
+
+* Region
+    ```{r}
+    table(colData(cpd)$region)
+    ```
+
+* Library strategy
+    ```{r}
+    table(colData(cpd)$library_strategy)
+    ```
+
+* Instrument
+    ```{r}
+    table(colData(cpd)$instrument)
+    ```
+
+* Country
+    ```{r}
+    head(sort(table(colData(cpd)$country), decreasing = TRUE))
+    ```
+
+
+### Microbe (row) metadata
+
+Each row in `cpd` represents one microbe. The `rowData` contains a data.frame-
+like set of metadata with columns `kingdom`, `phylum`, etc. 
+
+```{r}
+head(rowData(cpd))
+```
+
+## Use cases
+
+- [ ] TODO
+
+### Samples in specific Bioprojects
+
+### Samples from a specific world region
+
+## Read counts aggregated to *Order*
+
+## Samples filtered by presence of microbe
+

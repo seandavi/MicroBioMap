@@ -1,7 +1,7 @@
 Package: MicroBioMap
 Type: Package
 Title: Access the microbiome compendium from R
-Version: 0.4.0
+Version: 0.5.0
 Description: Our dataset includes over 170,000 samples of publicly available 
     16S rRNA amplicon sequencing data, all processed using the same pipeline 
     and reference database.
@@ -20,9 +20,22 @@ Authors@R:
     c(person("Sean", "Davis", 
       role = c("aut", "cre"), 
       email='seandavi@gmail.com',
-      comment=c(ORCID='0000-0002-8991-6458')))
+      comment=c(ORCID='0000-0002-8991-6458')),
+      person("Richard", "Abdill",
+      role = c("aut"),
+      email='rabdill@uchicago.edu',
+      comment=c(ORCID='0000-0001-9565-5832')),
+      person("Ran", "Blehkman",
+      role=c('aut'),
+      comment=c(ORCID='0000-0003-3218-613X')),
+      person("Samantha", "Graham", role=c('aut')),
+      person("Casey", "Greene", role=c("aut"))
+      )
 URL: https://seandavi.github.io/MicroBioMap/
 RoxygenNote: 7.2.3
 Suggests: 
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+VignetteBuilder: knitr
