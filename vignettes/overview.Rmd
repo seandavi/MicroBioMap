@@ -84,3 +84,9 @@ head(rowData(cpd))
 
 ## Samples filtered by presence of microbe
 
+
+## sessionInfo
+
+```{r}
+sessionInfo()
+```
