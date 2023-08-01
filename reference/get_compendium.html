@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">MicroBioMap</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,20 +63,77 @@
 <dd><p>BiocFileCache object to use</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>a `TreeSummarizedExperiment`</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># The data are large, so avoid running in example</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="va">cpd</span> <span class="op">&lt;-</span> <span class="fu">get_compendium</span><span class="op">(</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">cpd</span> <span class="op">&lt;-</span> <span class="fu">get_compendium</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">cpd</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1]   4018 168464</span>
 <span class="r-in"><span><span class="va">cpd</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> class: TreeSummarizedExperiment </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> dim: 4018 168464 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> metadata(0):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> assays(1): counts</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> rownames(4018):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Bacteria.Firmicutes.Clostridia.Oscillospirales.Ruminococcaceae.Subdoligranulum</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Bacteria.Proteobacteria.Gammaproteobacteria.Burkholderiales.Alcaligenaceae.Achromobacter</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Bacteria.Proteobacteria.Alphaproteobacteria.Rhodobacterales.Rhodobacteraceae.Poseidonocella</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Bacteria.CK-2C2-2.NA.NA.NA.NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> rowData names(8): kingdom phylum ... species strain</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> colnames(168464): PRJDB10485_DRR243823 PRJDB10485_DRR243824 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   PRJNA764337_SRR15959628 PRJNA764337_SRR15959674</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> colData names(11): srs project ... country region</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> reducedDimNames(0):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> mainExpName: NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> altExpNames(0):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> rowLinks: NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> rowTree: NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> colLinks: NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> colTree: NULL</span>
 <span class="r-in"><span><span class="fu">assayNames</span><span class="op">(</span><span class="va">cpd</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "counts"</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">cpd</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DataFrame with 6 rows and 11 columns</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              srs     project         srr library_strategy</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      &lt;character&gt; &lt;character&gt; &lt;character&gt;      &lt;character&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243823   DRS176859  PRJDB10485   DRR243823         AMPLICON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243824   DRS176860  PRJDB10485   DRR243824         AMPLICON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243825   DRS176861  PRJDB10485   DRR243825         AMPLICON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243826   DRS176862  PRJDB10485   DRR243826         AMPLICON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243827   DRS176863  PRJDB10485   DRR243827         AMPLICON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243828   DRS176864  PRJDB10485   DRR243828         AMPLICON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      library_source             pubdate total_bases</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         &lt;character&gt;           &lt;POSIXct&gt; &lt;integer64&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243823    METAGENOMIC 2021-03-26 15:30:38    85432160</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243824    METAGENOMIC 2021-03-26 15:30:40    85497094</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243825    METAGENOMIC 2021-03-26 15:30:40    81068656</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243826    METAGENOMIC 2021-03-26 15:30:40    72020224</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243827    METAGENOMIC 2021-03-26 15:30:40    81402358</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243828    METAGENOMIC 2021-03-26 15:30:40    83867024</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          instrument    geo_loc_name     country</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         &lt;character&gt;     &lt;character&gt; &lt;character&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243823 Illumina MiSeq ghana:koforidua       Ghana</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243824 Illumina MiSeq ghana:koforidua       Ghana</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243825 Illumina MiSeq ghana:koforidua       Ghana</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243826 Illumina MiSeq ghana:koforidua       Ghana</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243827 Illumina MiSeq ghana:koforidua       Ghana</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243828 Illumina MiSeq ghana:koforidua       Ghana</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  region</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             &lt;character&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243823 Sub-Saharan Africa</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243824 Sub-Saharan Africa</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243825 Sub-Saharan Africa</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243826 Sub-Saharan Africa</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243827 Sub-Saharan Africa</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PRJDB10485_DRR243828 Sub-Saharan Africa</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
