@@ -13,7 +13,7 @@ See the [full documentation](https://seandavi.github.io/MicroBioMap).
 For the smoothest installation experience, use the [`BiocManager` Bioconductor 
 package](https://bioconductor.org/packages/BiocManager).
 
-```{r}
+```
 BiocManager::install('seandavi/MicroBioMap')
 ```
 
