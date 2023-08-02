@@ -6,7 +6,7 @@
 
 Our dataset includes over 170,000 samples of publicly available 16S rRNA amplicon sequencing data, all processed using the same pipeline and reference database.
 
-See the [full documentation](https://seandavi.github.io/MicroBioMap).
+See the [full documentation](https://seandavi.github.io/MicroBioMap/articles/overview.html).
 
 ## Installation
 
@@ -22,6 +22,7 @@ BiocManager::install('seandavi/MicroBioMap')
 Load the compendium using:
 
 ```{r}
+library(MicroBioMap)
 cpd <- get_compendium()
 ```
 
