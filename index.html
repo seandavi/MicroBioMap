@@ -30,7 +30,7 @@
     
     <a class="navbar-brand me-2" href="index.html">MicroBioMap</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +72,7 @@
 </h1></div>
 <p><!-- badges: start --> <a href="https://github.com/seandavi/MicroBioMap/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/seandavi/MicroBioMap/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <!-- badges: end --></p>
 <p>Our dataset includes over 170,000 samples of publicly available 16S rRNA amplicon sequencing data, all processed using the same pipeline and reference database.</p>
-<p>See the <a href="https://seandavi.github.io/MicroBioMap">full documentation</a>.</p>
+<p>See the <a href="https://seandavi.github.io/MicroBioMap/articles/overview.html">full documentation</a>.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -83,7 +83,7 @@
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
 <p>Load the compendium using:</p>
-<p><code>{r} cpd &lt;- get_compendium()</code></p>
+<p><code>{r} library(MicroBioMap) cpd &lt;- get_compendium()</code></p>
 <p>The resulting object is a <code>TreeSummarizedExperiment</code> object. Currently, the “tree” part of the TreeSummarizedExperiment is not populated, but that is on the roadmap.</p>
 </div>
 </div>

@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">MicroBioMap</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,7 +114,7 @@
 <span><span class="co">## rowData names(8): kingdom phylum ... species strain</span></span>
 <span><span class="co">## colnames(168464): PRJDB10485_DRR243823 PRJDB10485_DRR243824 ...</span></span>
 <span><span class="co">##   PRJNA764337_SRR15959628 PRJNA764337_SRR15959674</span></span>
-<span><span class="co">## colData names(11): srs project ... country region</span></span>
+<span><span class="co">## colData names(11): srs project ... iso region</span></span>
 <span><span class="co">## reducedDimNames(0):</span></span>
 <span><span class="co">## mainExpName: NULL</span></span>
 <span><span class="co">## altExpNames(0):</span></span>
@@ -132,7 +132,7 @@ metadata:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">cpd</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##  [1] "srs"              "project"          "srr"              "library_strategy"</span></span>
 <span><span class="co">##  [5] "library_source"   "pubdate"          "total_bases"      "instrument"      </span></span>
-<span><span class="co">##  [9] "geo_loc_name"     "country"          "region"</span></span></code></pre>
+<span><span class="co">##  [9] "geo_loc_name"     "iso"              "region"</span></span></code></pre>
 <p>We can look at the samples by available regions:</p>
 <ul>
 <li>
@@ -140,16 +140,16 @@ metadata:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">cpd</span><span class="op">)</span><span class="op">$</span><span class="va">region</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
-<span><span class="co">##                                             Australia/New Zealand </span></span>
-<span><span class="co">##                            12880                             3916 </span></span>
-<span><span class="co">##        Central and Southern Asia   Eastern and South-Eastern Asia </span></span>
-<span><span class="co">##                             5602                            18461 </span></span>
-<span><span class="co">##      Europe and Northern America  Latin America and the Caribbean </span></span>
-<span><span class="co">##                           103564                             1215 </span></span>
-<span><span class="co">## Northern Africa and Western Asia                          Oceania </span></span>
-<span><span class="co">##                             1557                                4 </span></span>
-<span><span class="co">##               Sub-Saharan Africa                          unknown </span></span>
-<span><span class="co">##                             5953                            15312</span></span></code></pre>
+<span><span class="co">##            Australia/New Zealand        Central and Southern Asia </span></span>
+<span><span class="co">##                             3916                             5602 </span></span>
+<span><span class="co">##   Eastern and South-Eastern Asia      Europe and Northern America </span></span>
+<span><span class="co">##                            18461                           103564 </span></span>
+<span><span class="co">##  Latin America and the Caribbean Northern Africa and Western Asia </span></span>
+<span><span class="co">##                             1215                             1557 </span></span>
+<span><span class="co">##                          Oceania               Sub-Saharan Africa </span></span>
+<span><span class="co">##                                4                             5953 </span></span>
+<span><span class="co">##                          unknown </span></span>
+<span><span class="co">##                            28192</span></span></code></pre>
 </li>
 <li>
 <p>Library strategy</p>
@@ -177,11 +177,7 @@ metadata:</p>
 <p>Country</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">cpd</span><span class="op">)</span><span class="op">$</span><span class="va">country</span><span class="op">)</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## </span></span>
-<span><span class="co">## United States       unknown                       China       Denmark </span></span>
-<span><span class="co">##         59994         15312         12880         10235          5980 </span></span>
-<span><span class="co">##         Japan </span></span>
-<span><span class="co">##          5575</span></span></code></pre>
+<pre><code><span><span class="co">## integer(0)</span></span></code></pre>
 </li>
 </ul>
 </div>
@@ -263,31 +259,123 @@ columns <code>kingdom</code>, <code>phylum</code>, etc.</p>
 <div class="section level2">
 <h2 id="use-cases">Use cases<a class="anchor" aria-label="anchor" href="#use-cases"></a>
 </h2>
-<ul class="task-list">
-<li>
-<input type="checkbox">TODO</li>
-</ul>
 <div class="section level3">
 <h3 id="samples-in-specific-bioprojects">Samples in specific Bioprojects<a class="anchor" aria-label="anchor" href="#samples-in-specific-bioprojects"></a>
 </h3>
+<p>To select samples that belong to specific Bioprojects, we can filter
+using the “project” metadata column in the <code>colData</code>.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">cpd</span><span class="op">)</span><span class="op">$</span><span class="va">project</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "PRJDB10485" "PRJDB10527" "PRJDB10528" "PRJDB10612" "PRJDB11845"</span></span>
+<span><span class="co">## [6] "PRJDB11894"</span></span></code></pre>
+<p>For example, create a subset of data belonging to Bioprojects:</p>
+<ul>
+<li>PRJDB10485</li>
+<li>PRJDB10527</li>
+<li>PRJDB10528</li>
+<li>PRJDB10612</li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">project_ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PRJDB10485"</span>, <span class="st">"PRJDB10527"</span>, <span class="st">"PRJDB10528"</span>, <span class="st">"PRJDB10612"</span><span class="op">)</span></span>
+<span><span class="va">cpd_sub_by_project_ids</span> <span class="op">&lt;-</span> <span class="va">cpd</span><span class="op">[</span>,<span class="fu">colData</span><span class="op">(</span><span class="va">cpd</span><span class="op">)</span><span class="op">$</span><span class="va">project</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">project_ids</span><span class="op">]</span></span>
+<span><span class="va">cpd_sub_by_project_ids</span></span></code></pre></div>
+<pre><code><span><span class="co">## class: TreeSummarizedExperiment </span></span>
+<span><span class="co">## dim: 4018 637 </span></span>
+<span><span class="co">## metadata(0):</span></span>
+<span><span class="co">## assays(1): counts</span></span>
+<span><span class="co">## rownames(4018):</span></span>
+<span><span class="co">##   Bacteria.Firmicutes.Clostridia.Oscillospirales.Ruminococcaceae.Subdoligranulum</span></span>
+<span><span class="co">##   Bacteria.Proteobacteria.Gammaproteobacteria.Burkholderiales.Alcaligenaceae.Achromobacter</span></span>
+<span><span class="co">##   ...</span></span>
+<span><span class="co">##   Bacteria.Proteobacteria.Alphaproteobacteria.Rhodobacterales.Rhodobacteraceae.Poseidonocella</span></span>
+<span><span class="co">##   Bacteria.CK-2C2-2.NA.NA.NA.NA</span></span>
+<span><span class="co">## rowData names(8): kingdom phylum ... species strain</span></span>
+<span><span class="co">## colnames(637): PRJDB10485_DRR243823 PRJDB10485_DRR243824 ...</span></span>
+<span><span class="co">##   PRJDB10612_DRR254611 PRJDB10612_DRR254699</span></span>
+<span><span class="co">## colData names(11): srs project ... iso region</span></span>
+<span><span class="co">## reducedDimNames(0):</span></span>
+<span><span class="co">## mainExpName: NULL</span></span>
+<span><span class="co">## altExpNames(0):</span></span>
+<span><span class="co">## rowLinks: NULL</span></span>
+<span><span class="co">## rowTree: NULL</span></span>
+<span><span class="co">## colLinks: NULL</span></span>
+<span><span class="co">## colTree: NULL</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="samples-from-a-specific-world-region">Samples from a specific world region<a class="anchor" aria-label="anchor" href="#samples-from-a-specific-world-region"></a>
 </h3>
+<p>To select a subset of samples from a specific world region, subset by
+the “columns” of the dataset. The following code ummarized the regions
+are available and the number of samples in each region.</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">cpd</span><span class="op">)</span><span class="op">$</span><span class="va">region</span><span class="op">)</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">##      Europe and Northern America                          unknown </span></span>
+<span><span class="co">##                           103564                            28192 </span></span>
+<span><span class="co">##   Eastern and South-Eastern Asia               Sub-Saharan Africa </span></span>
+<span><span class="co">##                            18461                             5953 </span></span>
+<span><span class="co">##        Central and Southern Asia            Australia/New Zealand </span></span>
+<span><span class="co">##                             5602                             3916 </span></span>
+<span><span class="co">## Northern Africa and Western Asia  Latin America and the Caribbean </span></span>
+<span><span class="co">##                             1557                             1215 </span></span>
+<span><span class="co">##                          Oceania </span></span>
+<span><span class="co">##                                4</span></span></code></pre>
+<p>Now, select only those samples from, for example, “Sub-Saharan
+Africa”.</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">cpd_africa</span> <span class="op">&lt;-</span> <span class="va">cpd</span><span class="op">[</span>,<span class="fu">colData</span><span class="op">(</span><span class="va">cpd</span><span class="op">)</span><span class="op">$</span><span class="va">region</span><span class="op">==</span><span class="st">'Sub-Saharan Africa'</span><span class="op">]</span></span>
+<span><span class="va">cpd_africa</span></span></code></pre></div>
+<pre><code><span><span class="co">## class: TreeSummarizedExperiment </span></span>
+<span><span class="co">## dim: 4018 5953 </span></span>
+<span><span class="co">## metadata(0):</span></span>
+<span><span class="co">## assays(1): counts</span></span>
+<span><span class="co">## rownames(4018):</span></span>
+<span><span class="co">##   Bacteria.Firmicutes.Clostridia.Oscillospirales.Ruminococcaceae.Subdoligranulum</span></span>
+<span><span class="co">##   Bacteria.Proteobacteria.Gammaproteobacteria.Burkholderiales.Alcaligenaceae.Achromobacter</span></span>
+<span><span class="co">##   ...</span></span>
+<span><span class="co">##   Bacteria.Proteobacteria.Alphaproteobacteria.Rhodobacterales.Rhodobacteraceae.Poseidonocella</span></span>
+<span><span class="co">##   Bacteria.CK-2C2-2.NA.NA.NA.NA</span></span>
+<span><span class="co">## rowData names(8): kingdom phylum ... species strain</span></span>
+<span><span class="co">## colnames(5953): PRJDB10485_DRR243823 PRJDB10485_DRR243824 ...</span></span>
+<span><span class="co">##   PRJNA706727_SRR13886715 PRJNA706727_SRR13886719</span></span>
+<span><span class="co">## colData names(11): srs project ... iso region</span></span>
+<span><span class="co">## reducedDimNames(0):</span></span>
+<span><span class="co">## mainExpName: NULL</span></span>
+<span><span class="co">## altExpNames(0):</span></span>
+<span><span class="co">## rowLinks: NULL</span></span>
+<span><span class="co">## rowTree: NULL</span></span>
+<span><span class="co">## colLinks: NULL</span></span>
+<span><span class="co">## colTree: NULL</span></span></code></pre>
 </div>
+<div class="section level3">
+<h3 id="histogram-of-total-bases-per-sample">Histogram of total bases per sample<a class="anchor" aria-label="anchor" href="#histogram-of-total-bases-per-sample"></a>
+</h3>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">cpd</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="va">total_bases</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="overview_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
 </div>
-<div class="section level2">
-<h2 id="read-counts-aggregated-to-order">Read counts aggregated to <em>Order</em><a class="anchor" aria-label="anchor" href="#read-counts-aggregated-to-order"></a>
-</h2>
+<div class="section level3">
+<h3 id="read-counts-aggregated-to-order">Read counts aggregated to <em>Order</em><a class="anchor" aria-label="anchor" href="#read-counts-aggregated-to-order"></a>
+</h3>
+<ul class="task-list">
+<li>
+<input type="checkbox">TODO</li>
+</ul>
 </div>
-<div class="section level2">
-<h2 id="samples-filtered-by-presence-of-microbe">Samples filtered by presence of microbe<a class="anchor" aria-label="anchor" href="#samples-filtered-by-presence-of-microbe"></a>
-</h2>
+<div class="section level3">
+<h3 id="samples-filtered-by-presence-of-microbe">Samples filtered by presence of microbe<a class="anchor" aria-label="anchor" href="#samples-filtered-by-presence-of-microbe"></a>
+</h3>
+<ul class="task-list">
+<li>
+<input type="checkbox">TODO</li>
+</ul>
+</div>
 </div>
 <div class="section level2">
 <h2 id="sessioninfo">sessionInfo<a class="anchor" aria-label="anchor" href="#sessioninfo"></a>
 </h2>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## R version 4.3.0 (2023-04-21)</span></span>
 <span><span class="co">## Platform: aarch64-apple-darwin20 (64-bit)</span></span>
@@ -308,42 +396,44 @@ columns <code>kingdom</code>, <code>phylum</code>, etc.</p>
 <span><span class="co">## [8] base     </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## other attached packages:</span></span>
-<span><span class="co">##  [1] MicroBioMap_0.99.0             ape_5.7-1                     </span></span>
-<span><span class="co">##  [3] TreeSummarizedExperiment_2.8.0 Biostrings_2.68.1             </span></span>
-<span><span class="co">##  [5] XVector_0.40.0                 SingleCellExperiment_1.22.0   </span></span>
-<span><span class="co">##  [7] SummarizedExperiment_1.30.2    Biobase_2.60.0                </span></span>
-<span><span class="co">##  [9] GenomicRanges_1.52.0           GenomeInfoDb_1.36.1           </span></span>
-<span><span class="co">## [11] IRanges_2.34.1                 S4Vectors_0.38.1              </span></span>
-<span><span class="co">## [13] BiocGenerics_0.46.0            MatrixGenerics_1.12.2         </span></span>
-<span><span class="co">## [15] matrixStats_1.0.0             </span></span>
+<span><span class="co">##  [1] ggplot2_3.4.2                  MicroBioMap_0.99.4            </span></span>
+<span><span class="co">##  [3] ape_5.7-1                      TreeSummarizedExperiment_2.8.0</span></span>
+<span><span class="co">##  [5] Biostrings_2.68.1              XVector_0.40.0                </span></span>
+<span><span class="co">##  [7] SingleCellExperiment_1.22.0    SummarizedExperiment_1.30.2   </span></span>
+<span><span class="co">##  [9] Biobase_2.60.0                 GenomicRanges_1.52.0          </span></span>
+<span><span class="co">## [11] GenomeInfoDb_1.36.1            IRanges_2.34.1                </span></span>
+<span><span class="co">## [13] S4Vectors_0.38.1               BiocGenerics_0.46.0           </span></span>
+<span><span class="co">## [15] MatrixGenerics_1.12.2          matrixStats_1.0.0             </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## loaded via a namespace (and not attached):</span></span>
-<span><span class="co">##  [1] tidyselect_1.2.0        dplyr_1.1.2             blob_1.2.4             </span></span>
-<span><span class="co">##  [4] filelock_1.0.2          R.utils_2.12.2          bitops_1.0-7           </span></span>
-<span><span class="co">##  [7] fastmap_1.1.1           RCurl_1.98-1.12         lazyeval_0.2.2         </span></span>
-<span><span class="co">## [10] BiocFileCache_2.8.0     digest_0.6.33           lifecycle_1.0.3        </span></span>
-<span><span class="co">## [13] tidytree_0.4.2          RSQLite_2.3.1           magrittr_2.0.3         </span></span>
-<span><span class="co">## [16] compiler_4.3.0          rlang_1.1.1             sass_0.4.6             </span></span>
-<span><span class="co">## [19] tools_4.3.0             utf8_1.2.3              yaml_2.3.7             </span></span>
-<span><span class="co">## [22] data.table_1.14.8       knitr_1.43              S4Arrays_1.0.4         </span></span>
-<span><span class="co">## [25] bit_4.0.5               curl_5.0.1              DelayedArray_0.26.6    </span></span>
-<span><span class="co">## [28] BiocParallel_1.34.2     withr_2.5.0             purrr_1.0.1            </span></span>
-<span><span class="co">## [31] desc_1.4.2              R.oo_1.25.0             grid_4.3.0             </span></span>
-<span><span class="co">## [34] fansi_1.0.4             cli_3.6.1               rmarkdown_2.23         </span></span>
-<span><span class="co">## [37] crayon_1.5.2            ragg_1.2.5              treeio_1.24.1          </span></span>
-<span><span class="co">## [40] generics_0.1.3          rstudioapi_0.15.0       httr_1.4.6             </span></span>
-<span><span class="co">## [43] DBI_1.1.3               cachem_1.0.8            stringr_1.5.0          </span></span>
-<span><span class="co">## [46] zlibbioc_1.46.0         parallel_4.3.0          vctrs_0.6.3            </span></span>
-<span><span class="co">## [49] yulab.utils_0.0.6       Matrix_1.6-0            jsonlite_1.8.7         </span></span>
-<span><span class="co">## [52] bit64_4.0.5             systemfonts_1.0.4       jquerylib_0.1.4        </span></span>
-<span><span class="co">## [55] tidyr_1.3.0             glue_1.6.2              pkgdown_2.0.7          </span></span>
-<span><span class="co">## [58] codetools_0.2-19        stringi_1.7.12          tibble_3.2.1           </span></span>
-<span><span class="co">## [61] pillar_1.9.0            htmltools_0.5.5         GenomeInfoDbData_1.2.10</span></span>
-<span><span class="co">## [64] R6_2.5.1                dbplyr_2.3.3            textshaping_0.3.6      </span></span>
-<span><span class="co">## [67] rprojroot_2.0.3         evaluate_0.21           lattice_0.21-8         </span></span>
-<span><span class="co">## [70] R.methodsS3_1.8.2       memoise_2.0.1           bslib_0.5.0            </span></span>
-<span><span class="co">## [73] Rcpp_1.0.11             nlme_3.1-162            xfun_0.39              </span></span>
-<span><span class="co">## [76] fs_1.6.2                pkgconfig_2.0.3</span></span></code></pre>
+<span><span class="co">##  [1] tidyselect_1.2.0        farver_2.1.1            dplyr_1.1.2            </span></span>
+<span><span class="co">##  [4] blob_1.2.4              filelock_1.0.2          R.utils_2.12.2         </span></span>
+<span><span class="co">##  [7] bitops_1.0-7            fastmap_1.1.1           RCurl_1.98-1.12        </span></span>
+<span><span class="co">## [10] lazyeval_0.2.2          BiocFileCache_2.8.0     digest_0.6.33          </span></span>
+<span><span class="co">## [13] lifecycle_1.0.3         tidytree_0.4.2          RSQLite_2.3.1          </span></span>
+<span><span class="co">## [16] magrittr_2.0.3          compiler_4.3.0          rlang_1.1.1            </span></span>
+<span><span class="co">## [19] sass_0.4.6              tools_4.3.0             utf8_1.2.3             </span></span>
+<span><span class="co">## [22] yaml_2.3.7              data.table_1.14.8       knitr_1.43             </span></span>
+<span><span class="co">## [25] labeling_0.4.2          S4Arrays_1.0.4          bit_4.0.5              </span></span>
+<span><span class="co">## [28] curl_5.0.1              DelayedArray_0.26.6     BiocParallel_1.34.2    </span></span>
+<span><span class="co">## [31] withr_2.5.0             purrr_1.0.1             desc_1.4.2             </span></span>
+<span><span class="co">## [34] R.oo_1.25.0             grid_4.3.0              fansi_1.0.4            </span></span>
+<span><span class="co">## [37] colorspace_2.1-0        scales_1.2.1            cli_3.6.1              </span></span>
+<span><span class="co">## [40] rmarkdown_2.23          crayon_1.5.2            ragg_1.2.5             </span></span>
+<span><span class="co">## [43] treeio_1.24.1           generics_0.1.3          rstudioapi_0.15.0      </span></span>
+<span><span class="co">## [46] httr_1.4.6              DBI_1.1.3               cachem_1.0.8           </span></span>
+<span><span class="co">## [49] stringr_1.5.0           zlibbioc_1.46.0         parallel_4.3.0         </span></span>
+<span><span class="co">## [52] vctrs_0.6.3             yulab.utils_0.0.6       Matrix_1.6-0           </span></span>
+<span><span class="co">## [55] jsonlite_1.8.7          bit64_4.0.5             systemfonts_1.0.4      </span></span>
+<span><span class="co">## [58] jquerylib_0.1.4         tidyr_1.3.0             glue_1.6.2             </span></span>
+<span><span class="co">## [61] pkgdown_2.0.7           codetools_0.2-19        gtable_0.3.3           </span></span>
+<span><span class="co">## [64] stringi_1.7.12          munsell_0.5.0           tibble_3.2.1           </span></span>
+<span><span class="co">## [67] pillar_1.9.0            htmltools_0.5.5         GenomeInfoDbData_1.2.10</span></span>
+<span><span class="co">## [70] R6_2.5.1                dbplyr_2.3.3            textshaping_0.3.6      </span></span>
+<span><span class="co">## [73] rprojroot_2.0.3         evaluate_0.21           lattice_0.21-8         </span></span>
+<span><span class="co">## [76] highr_0.10              R.methodsS3_1.8.2       memoise_2.0.1          </span></span>
+<span><span class="co">## [79] bslib_0.5.0             Rcpp_1.0.11             nlme_3.1-162           </span></span>
+<span><span class="co">## [82] xfun_0.39               fs_1.6.2                pkgconfig_2.0.3</span></span></code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
