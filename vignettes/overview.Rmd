@@ -74,16 +74,58 @@ head(rowData(cpd))
 
 ## Use cases
 
-- [ ] TODO
-
 ### Samples in specific Bioprojects
+
+To select samples that belong to specific Bioprojects, we can filter using
+the "project" metadata column in the `colData`.
+
+```{r}
+head(unique(colData(cpd)$project))
+```
+
+For example, create a subset of data belonging to Bioprojects:
+
+- PRJDB10485
+- PRJDB10527
+- PRJDB10528
+- PRJDB10612
+
+```{r}
+project_ids <- c("PRJDB10485", "PRJDB10527", "PRJDB10528", "PRJDB10612")
+cpd_sub_by_project_ids <- cpd[,colData(cpd)$project %in% project_ids]
+cpd_sub_by_project_ids
+```
 
 ### Samples from a specific world region
 
-## Read counts aggregated to *Order*
+To select a subset of samples from a specific world region, subset by the
+"columns" of the dataset. The following code ummarized the regions are 
+available and the number of samples in each region.
 
-## Samples filtered by presence of microbe
+```{r}
+sort(table(colData(cpd)$region), decreasing = TRUE)
+```
+Now, select only those samples from, for example, "Sub-Saharan Africa".
 
+```{r}
+cpd_africa <- cpd[,colData(cpd)$region=='Sub-Saharan Africa']
+cpd_africa
+```
+
+### Histogram of total bases per sample
+
+```{r}
+hist(log10(colData(cpd)$total_bases), main ='Total bases by sample', 
+    xlab = 'log10(total bases)', breaks='scott')
+```
+
+### Read counts aggregated to *Order*
+
+- [ ] TODO
+
+### Samples filtered by presence of microbe
+
+- [ ] TODO
 
 ## sessionInfo
 
