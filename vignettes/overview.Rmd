@@ -114,9 +114,9 @@ cpd_africa
 
 ### Histogram of total bases per sample
 
-```{r}
-hist(log10(colData(cpd)$total_bases), main ='Total bases by sample', 
-    xlab = 'log10(total bases)', breaks='scott')
+```{r warning=FALSE, message=FALSE}
+library(ggplot2)
+ggplot(as.data.frame(colData(cpd)), aes(x=log10(total_bases))) + geom_histogram()
 ```
 
 ### Read counts aggregated to *Order*
