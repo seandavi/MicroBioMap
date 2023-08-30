@@ -85,7 +85,7 @@ taxonname2edgelist <- function(taxon) {
     v <- v[!v == "NA"]
     if (length(v) > 1) {
         lv <- length(v)
-        df <- data.frame(from = v[1:(lv - 1)], to = v[2:lv])
+        df <- data.frame(from = v[seq_len(lv - 1)], to = v[1+seq_len(lv-1)])
     } else {
         df <- data.frame()
     }
