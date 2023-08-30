@@ -122,7 +122,7 @@ taxa2phylo <- function(taxa) {
     node.label <- unique(from)
 
     # make a map from taxonomy ID to internal 1:n ids
-    idmap <- 1:(length(tip.label) + length(node.label))
+    idmap <- seq_along(c(tip.label, node.label))
     names(idmap) <- c(tip.label, node.label)
 
     # make a phylo object
