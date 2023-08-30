@@ -81,7 +81,6 @@ get_compendium <- function(bfc = BiocFileCache::BiocFileCache()) {
 }
 
 taxonname2edgelist <- function(taxon) {
-    print(taxon)
     v <- strsplit(taxon, "\\.")[[1]]
     v <- v[!v == "NA"]
     if (length(v) > 1) {
