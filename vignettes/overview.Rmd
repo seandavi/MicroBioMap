@@ -15,7 +15,7 @@ vignette: >
 
 ```{r eval=FALSE}
 library(BiocManager)
-BiocManager::install('seandavi/MicroBioMap')
+BiocManager::install("seandavi/MicroBioMap")
 ```
 
 ## Basic usage
@@ -44,22 +44,22 @@ We can look at the samples by available regions:
 
 * Region
     ```{r}
-    table(colData(cpd)$region)
+table(colData(cpd)$region)
     ```
 
 * Library strategy
     ```{r}
-    table(colData(cpd)$library_strategy)
+table(colData(cpd)$library_strategy)
     ```
 
 * Instrument
     ```{r}
-    table(colData(cpd)$instrument)
+table(colData(cpd)$instrument)
     ```
 
 * Country
     ```{r}
-    head(sort(table(colData(cpd)$country), decreasing = TRUE))
+head(sort(table(colData(cpd)$country), decreasing = TRUE))
     ```
 
 
@@ -92,7 +92,7 @@ For example, create a subset of data belonging to Bioprojects:
 
 ```{r}
 project_ids <- c("PRJDB10485", "PRJDB10527", "PRJDB10528", "PRJDB10612")
-cpd_sub_by_project_ids <- cpd[,colData(cpd)$project %in% project_ids]
+cpd_sub_by_project_ids <- cpd[, colData(cpd)$project %in% project_ids]
 cpd_sub_by_project_ids
 ```
 
@@ -108,7 +108,7 @@ sort(table(colData(cpd)$region), decreasing = TRUE)
 Now, select only those samples from, for example, "Sub-Saharan Africa".
 
 ```{r}
-cpd_africa <- cpd[,colData(cpd)$region=='Sub-Saharan Africa']
+cpd_africa <- cpd[, colData(cpd)$region == "Sub-Saharan Africa"]
 cpd_africa
 ```
 
@@ -116,7 +116,8 @@ cpd_africa
 
 ```{r warning=FALSE, message=FALSE}
 library(ggplot2)
-ggplot(as.data.frame(colData(cpd)), aes(x=log10(total_bases))) + geom_histogram()
+ggplot(as.data.frame(colData(cpd)), aes(x = log10(total_bases))) +
+    geom_histogram()
 ```
 
 ### Read counts aggregated to *Order*
