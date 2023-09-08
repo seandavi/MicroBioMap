@@ -1,8 +1,7 @@
 url: https://seandavi.github.io/MicroBioMap/
 template:
   bootstrap: 5
-  bootswatch: cyborg
-  theme: arrow-dark
+  bootswatch: spacelab
 
 navbar:
   structure:
