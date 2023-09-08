@@ -1,7 +1,7 @@
 Package: MicroBioMap
 Type: Package
 Title: Access the microbiome compendium from R
-Version: 0.99.7
+Version: 0.99.8
 Description: The MicroBioMap offers access to a dataset including over 
     160,000 samples of publicly available 
     16S rRNA amplicon sequencing data, all processed using the same pipeline 
@@ -34,7 +34,7 @@ Authors@R:
       person("Casey", "Greene", role=c("aut"))
       )
 URL: https://seandavi.github.io/MicroBioMap/
-biocViews: Microbiome, Metagenomics, Sequencing
+biocViews: Microbiome, Metagenomics, Sequencing, ExperimentData
 RoxygenNote: 7.2.3
 Suggests: 
     knitr,
