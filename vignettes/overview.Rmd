@@ -167,6 +167,34 @@ cpd_africa <- cpd[, colData(cpd)$region == "Sub-Saharan Africa"]
 cpd_africa
 ```
 
+### Samples from a specific country
+
+To select a subset of samples from a specific country, subset by the
+"columns" of the dataset. The following code ummarized the countries are
+available and the number of samples in each country.
+
+```{r}
+library(forcats)
+library(ggplot2)
+ggplot(as.data.frame(colData(cpd)), 
+    aes(x = fct_infreq(iso))) +
+    geom_bar(stat='count') +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    labs(x = "Country", y = "Number of samples") +
+    scale_y_log10()
+```
+
+### Enrich data with country names
+
+Using the `countrycode` package, we can convert the iso codes to country names.
+
+```{r}
+library(countrycode)
+colData(cpd)$country <- countrycode(colData(cpd)$iso, "iso2c", "country.name")
+# or add the iso3c code
+colData(cpd)$iso3c <- countrycode(colData(cpd)$iso, "iso2c", "iso3c")
+```
+
 ### Histogram of total bases per sample
 
 ```{r warning=FALSE, message=FALSE}
