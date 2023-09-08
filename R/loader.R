@@ -1,10 +1,10 @@
-.get_compendium_data <- function(bfc) {
+.getCompendiumData <- function(bfc) {
     url <- "https://zenodo.org/record/8226567/files/taxonomic_table.csv.gz"
     rpath <- bfcrpath(bfc, url)
     data.table::fread(rpath)
 }
 
-.get_compendium_coldata <- function(bfc) {
+.getCompendiumColdata <- function(bfc) {
     url <- "https://zenodo.org/record/8226567/files/sample_metadata.tsv"
     rpath <- bfcrpath(bfc, url)
     sampdat <- as.data.frame(data.table::fread(rpath))
@@ -35,10 +35,10 @@
 #' assayNames(cpd)
 #' head(colData(cpd))
 #'
-get_compendium <- function(bfc = BiocFileCache::BiocFileCache()) {
-    dat <- .get_compendium_data(bfc)
+getCompendium <- function(bfc = BiocFileCache::BiocFileCache()) {
+    dat <-.getCompendiumData(bfc)
 
-    coldat <- .get_compendium_coldata(bfc)
+    coldat <- .getCompendiumColdata(bfc)
 
     sampnames <- dat[[2]]
 
