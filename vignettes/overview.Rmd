@@ -9,6 +9,61 @@ vignette: >
 
 ## Overview
 
+The human microbiome, particularly in the large intestine, is gaining attention
+for its role in health and disease, including conditions like colorectal cancer
+and inflammatory bowel disease. Various factors, including genetics and
+ethnicity, influence the human microbiome, often tied to geographic regions. As
+a result, individuals from different global regions tend to have distinct gut
+microbiomes. While research has shown significant variation in the gut
+microbiome across countries and social groups, much of the microbiome literature
+has focused on a limited range of subjects, raising questions about the
+generalizability of these findings.
+
+To address these limitations, researchers have turned to publicly available
+microbiome data, revealing an overrepresentation of high-income countries like
+the United States and Finland in major microbiome research repositories.
+However, significant variations from the Western baseline are observed when
+other communities are studied. This suggests that the current understanding of
+the microbiome may be limited due to geographic gaps in research.
+
+To bridge this gap and enhance the field's bioinformatic capabilities, the Human
+Microbiome Compendium is introduced. It comprises over 168,000 human gut
+microbiome samples from 68 countries, processed using advanced tools and made
+accessible in various formats, including the MicroBioMap R package and a
+dedicated website. This dataset is used to analyze global patterns in microbiome
+composition and identify areas where our knowledge of the human gut microbiome
+is lacking.
+
+### Primary data processing
+
+Amplicon processing was conducted according to the following criteria: If the
+quantity of forward read files corresponded with the number of reverse read
+files, we proceeded with paired-end sequencing analysis. However, in cases of a
+mismatch or the absence of reverse reads, the project was treated as
+single-ended data. In both scenarios, we employed DADA2 version 1.14.0 for data
+processing (B. J. Callahan et al. 2016). We utilized broad parameter settings
+intended to maximize the inclusion of samples while excluding low-quality data:
+Specifically, we did not apply fixed trimming from either end or impose a
+maximum read length. Reads shorter than 20 nucleotides, those containing
+ambiguous ("N") base calls, and reads aligning to the phiX genome (typically
+present as a control in Illumina sequencing runs) were eliminated. Additionally,
+quality-based truncation of reads was disabled. Paired-end reads were merged
+with a minimum overlap of 20 bases. In certain instances, the merging process
+failed, resulting in minimal or no merging of forward and reverse reads, often
+associated with sequencing strategies featuring non-overlapping reads. For
+studies where less than 50 percent of forward reads merged successfully, we
+opted to discard the reverse reads rather than concatenate them. This decision
+aimed to prevent failures in merging due to low-quality calls or discrepancies
+between forward and reverse read files. In such cases, the reverse reads were
+excluded, and the projects were reprocessed as single-ended data. When the
+number of forward reads did not align with the number of reverse reads within a
+sample, an attempt was made to employ DADA2 to identify the sequence identifier
+field in the FASTQ file, facilitating the alignment of salvageable samples. In
+cases where this attempt proved unsuccessful, the reverse reads were removed,
+and the data was reprocessed as single-ended. Taxonomic assignment was carried
+out by DADA2, utilizing the SILVA database release 138.1 as a reference (Quast
+et al. 2013; McLaren and Callahan 2021).
+
 ## Getting started
 
 ### Installation
@@ -23,7 +78,7 @@ BiocManager::install("seandavi/MicroBioMap")
 ```{r message=FALSE}
 library(MicroBioMap)
 # this operation requires about 4GB of RAM
-cpd <- get_compendium()
+cpd <- getCompendium()
 ```
 
 ```{r}
@@ -59,7 +114,7 @@ table(colData(cpd)$instrument)
 
 * Country
     ```{r}
-head(sort(table(colData(cpd)$country), decreasing = TRUE))
+head(sort(table(colData(cpd)$geo_loc_name), decreasing = TRUE))
     ```
 
 
@@ -120,13 +175,29 @@ ggplot(as.data.frame(colData(cpd)), aes(x = log10(total_bases))) +
     geom_histogram()
 ```
 
-### Read counts aggregated to *Order*
-
-- [ ] TODO
-
 ### Samples filtered by presence of microbe
 
-- [ ] TODO
+There are over 4000 microbes represented in the compendium. Some are fairly rare
+and we may want to subset the compendium to only those with a specific
+bug in the sample. Here, we pick an arbitrary examplar to show just the 
+mechanics. 
+
+```{r}
+shig_cpd_counts = counts(cpd)['Bacteria.Proteobacteria.Gammaproteobacteria.Enterobacterales.Enterobacteriaceae.Escherichia-Shigella',]
+```
+
+Examine the distribution of abundance across all samples in the compendium.
+
+```{r}
+hist(log10(shig_cpd_counts))
+```
+Picking an arbitrary threshold (after all, this is only an example), we can
+limit samples to those with plenty of our bacteria of interest present. 
+
+```{r}
+shig_cpd <- cpd[, log10(shig_cpd_counts)>2]
+dim(shig_cpd)
+```
 
 ## sessionInfo
 
