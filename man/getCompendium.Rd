@@ -16,7 +16,7 @@ a `TreeSummarizedExperiment`
 load all compendium data into a TreeSummarizedExperiment
 }
 \examples{
-cpd <- get_compendium()
+cpd <- getCompendium()
 
 dim(cpd)
 cpd

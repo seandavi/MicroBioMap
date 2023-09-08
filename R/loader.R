@@ -28,7 +28,7 @@
 #' @export
 #'
 #' @examples
-#' cpd <- get_compendium()
+#' cpd <- getCompendium()
 #'
 #' dim(cpd)
 #' cpd
