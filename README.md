@@ -24,7 +24,7 @@ BiocManager::install('seandavi/MicroBioMap')
 
 Load the compendium using:
 
-```{r}
+```
 library(MicroBioMap)
 cpd <- getCompendium()
 ```
