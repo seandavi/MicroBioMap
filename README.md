@@ -1,7 +1,7 @@
 # Microbiome Compendium
 
 
-Our dataset includes over 170,000 samples of publicly available 16S rRNA
+Our dataset includes more than 168,000 samples of publicly available 16S rRNA
 amplicon sequencing data, all processed using the same pipeline and reference
 database.
 
@@ -35,3 +35,5 @@ on the roadmap.
 
 After loading the compendium, you will have immediate access to nearly
 170,000 microbiome samples. 
+
+The `getCompendium` function retrieves [data stored by Zenodo](https://doi.org/10.5281/zenodo.8186993) and accepts an optional parameter indicating which version to download—for example, `getCompendium('1.0.1')`. Version 1.0.1 is retrieved by default.
